@@ -1,5 +1,4 @@
-import static java.lang.Math.sqrt;
-import java.util.ArrayList;
+package lab1;
 
 /**
  *An array of Luke numbers
