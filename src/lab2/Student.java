@@ -49,7 +49,7 @@ public class Student {
     public void setDepartment(String department){this.department =  department;}
     public void setGroup(String group){this.group = group;}
 
-    @Override
+
     public String toString()
     {
         String result = "";
