@@ -1,5 +1,8 @@
 package lab2;
 
+/**
+ * Class Student with fields: ID, surname, name, bitrhdau, etc.
+ */
 public class Student {
     private int ID = 0;
     private String surname = "NoName";
@@ -12,6 +15,19 @@ public class Student {
     private int course = 0;
     private String group = "NoName";
 
+    /**
+     * Constructor
+     * @param ID
+     * @param surname
+     * @param name
+     * @param patronymic
+     * @param birthday
+     * @param adress
+     * @param phone
+     * @param department
+     * @param course
+     * @param group
+     */
     public Student(int ID, String surname, String name, String patronymic, int[] birthday, String adress, int phone,
                    String department, int course, String  group)
     {
@@ -27,15 +43,56 @@ public class Student {
         this.group = group;
      }
 
+    /**
+     * Getter ID
+     * @return
+     */
     public int getID() {return ID;}
+    /**
+     * Getter phone
+     * @return
+     */
     public int getPhone() {return phone;}
+    /**
+     * Getter course
+     * @return
+     */
     public int getCourse(){ return course;}
+    /**
+     * Getter surname
+     * @return
+     */
     public String getSurname(){ return surname;}
+
+    /**
+     * getter name
+     * @return
+     */
     public String getName(){return name;}
+    /**
+     * Getter patr
+     * @return
+     */
     public String getPatronymic(){return patronymic;}
+    /**
+     * Getter birthday
+     * @return
+     */
     public int[] getBirthday(){return birthday;}
+    /**
+     * Getter address
+     * @return
+     */
     public String getAddress(){return address;}
+    /**
+     * Getter department
+     * @return
+     */
     public String getDepartment(){return department;}
+    /**
+     * Getter group
+     * @return
+     */
     public String getGroup(){return group;}
 
     public void setID(int ID) {this.ID = ID;}

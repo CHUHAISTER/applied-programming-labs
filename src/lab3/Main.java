@@ -1,15 +1,14 @@
 package lab3;
 
-import java.util.Random;
+import lab3.Controller.Menu;
+import lab3.droids.Droid_list;
+
+import java.io.FileNotFoundException;
 
 public class Main {
-    public static void main(String[] args)
-    {
-        Random random = new Random();
-
-        for (int i =0; i<10; i++)
-        {
-            System.out.println(random.nextInt(4)+1);
-        }
+    public static void main(String[] args) throws FileNotFoundException {
+            Droid_list List_Droid = new Droid_list();
+            Menu menu = new Menu(List_Droid);
     }
+
 }

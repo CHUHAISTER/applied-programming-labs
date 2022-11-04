@@ -20,6 +20,10 @@ public class Main {
 
     }
 
+    /**
+     * Input data for program
+     * @return
+     */
     public static Students_list input_data()
     {
         int k_start_student;
@@ -68,6 +72,11 @@ public class Main {
         return st_list;
     }
 
+
+    /**
+     * All dara print
+     * @param list
+     */
     public static void printdata(List<Student> list)
     {
         System.out.println("\n\n");

@@ -2,17 +2,18 @@ package lab3.droids;
 
 import java.util.Random;
 /**
- * The base class of droid
+ * The base abstract class of droid
  * That has base characteristic of every droid like name, health, isAlive, etc
  */
-public class Droid {
+public abstract class Droid {
     private String name; //name droid
     private int health;  //current hp
     private int maxhealth; //max hp
     private int armor; //armor class
     private boolean isAlive; // demonstrate: dead or live
-    private int min_damage; // min damage
-    private int power_weapon_prof;
+    private int min_damage = 0; // min damage
+    private int power_weapon_prof; //bonus for attack
+    private int dice_damage;
 
 
     public static Random random = new Random(); //var fo all random variables
@@ -58,6 +59,14 @@ public class Droid {
     }
 
     /**
+     * Setter weapon_prof
+     * @param power_weapon_prof
+     */
+    public void setPower_weapon_prof(int power_weapon_prof) {
+        this.power_weapon_prof = power_weapon_prof;
+    }
+
+    /**
      * Getter max hp
      * @return maxhealth
      */
@@ -90,6 +99,22 @@ public class Droid {
     }
 
     /**
+     * Getter dice damage
+     * @return dice_damage
+     */
+    public int getDice_damage() {
+        return dice_damage;
+    }
+
+    /**
+     * Setter dice damage
+     * @param dice_damage
+     */
+    public void setDice_damage(int dice_damage) {
+        this.dice_damage = dice_damage;
+    }
+
+    /**
      * Setter mindamage
      * @param min_damage
      */
@@ -97,22 +122,33 @@ public class Droid {
         this.min_damage = min_damage;
     }
 
+
+
     /**
      * Function for all change health
      * @param ch_health
      */
     public void chagehealth(int ch_health) {
-        if(ch_health + health < 0)
-        {
-            this.health = 0;
-            this.isAlive = false;
-        } else if (ch_health + this.health > this.maxhealth) {
-            this.health = maxhealth;
+        if(isAlive != false) {
+            if (ch_health + health <= 0) {
+                this.health = 0;
+                this.isAlive = false;
+            } else if (ch_health + this.health > this.maxhealth) {
+                this.health = maxhealth;
+            } else {
+                this.health += ch_health;
+            }
         }
-        else
-        {
-            this.health += ch_health;
-        }
+    }
+
+    /**
+     * refresh data for droid
+     */
+    public void refreshDroid()
+    {
+        this.isAlive = true;
+        this.health = this.maxhealth;
+        this.min_damage = 1;
     }
 
 
@@ -128,6 +164,47 @@ public class Droid {
                 ", maxhealth=" + maxhealth +
                 ", armor=" + armor +
                 ", isAlive=" + isAlive +
+                ", min_damage=" + min_damage +
+                ", power_weapon_prof=" + power_weapon_prof +
+                ", dice_damage=" + dice_damage +
                 '}';
     }
+
+    /**
+     * Func for damage enemy
+     * @param enemy
+     */
+    public void make_attack(Droid enemy)
+    {
+        int make_attack = Droid.random.nextInt(20) + 1;
+        int damage;
+        if (make_attack == 20)
+        {
+            damage = ((2 * Droid.random.nextInt(this.dice_damage)+1)+this.min_damage);
+            enemy.chagehealth(-damage);
+            System.out.println("Critical shot from the " + this.name + " to the " + enemy.getName() + " for "+ damage
+                    +" damage!");
+        }
+        else if (make_attack + this.power_weapon_prof >= enemy.getArmor())
+        {
+            damage = ((Droid.random.nextInt(this.dice_damage)+1)+this.min_damage);
+            enemy.chagehealth(-damage);
+            System.out.println("Shot from the " + this.name + " to the " + enemy.getName() + " for "+ damage
+                    +" damage!");
+        }
+        else
+        {
+            System.out.println("\u001B[33m"+ "Terrible shot from " + this.name + "!" + "\u001B[0m");
+        }
+    }
+
+    /**
+     * action for round dor droids
+     * @param enemy
+     */
+    public void action_round(Droid enemy)
+    {
+        make_attack(enemy);
+    }
+
 }
