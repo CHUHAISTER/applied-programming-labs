@@ -8,9 +8,7 @@ import java.util.Objects;
 public class Students_list {
     private int lenght_full_list;
     private List<Student> full_list = new ArrayList<Student>();
-    private List<Student> department_list = new ArrayList<Student>();
-    private List<Student> birthday_list = new ArrayList<Student>();
-    private List<Student> group_list = new ArrayList<Student>();
+
 
 
     /**
@@ -58,53 +56,6 @@ public class Students_list {
      */
     public Student getstudentfromlist(int i){return full_list.get(i);}
 
-    /**
-     * get dep list
-     * @return
-     */
-    public List<Student> getDepartment_list()
-    {
-        return department_list;
-    }
-
-    /**
-     * get stud for dep list
-     * @param i
-     * @return
-     */
-    public Student getstudentfromdlist(int i){return department_list.get(i);}
-
-    /**
-     * get bithday list
-     * @return
-     */
-    public List<Student> getBirthday_list()
-    {
-        return birthday_list;
-    }
-
-    /**
-     * get student for birthday list
-     * @param i
-     * @return
-     */
-    public Student getstudentfromblist(int i){return birthday_list.get(i);}
-
-    /**
-     * get group list
-     * @return
-     */
-    public List<Student> getGroup_list()
-    {
-        return group_list;
-    }
-
-    /**
-     * get student for group list
-      * @param i
-     * @return
-     */
-    public Student getstudentfromglist(int i){return group_list.get(i);}
 
 
     /**
@@ -112,9 +63,10 @@ public class Students_list {
      * @param dep
      * @return
      */
-    public List<Student> createlistdepart(String dep)
+    public Students_list createlistdepart(String dep)
     {
-        department_list.clear();
+
+        List<Student> department_list = new ArrayList<Student>();
         for (int i =0; i< lenght_full_list; i++)
         {
             if (Objects.equals(full_list.get(i).getDepartment(), dep))
@@ -122,7 +74,7 @@ public class Students_list {
                 department_list.add(full_list.get(i));
             }
         }
-        return  department_list;
+        return  new Students_list(department_list);
     }
 
     /**
@@ -130,9 +82,9 @@ public class Students_list {
      * @param group
      * @return
      */
-    public List<Student> createlistgroup(String group)
+    public Students_list createlistgroup(String group)
     {
-        group_list.clear();
+        List<Student> group_list = new ArrayList<Student>();
         for (int i =0; i< lenght_full_list; i++)
         {
             if (Objects.equals(full_list.get(i).getGroup(), group))
@@ -140,17 +92,19 @@ public class Students_list {
                 group_list.add(full_list.get(i));
             }
         }
-        return  group_list;
+        return  new Students_list(group_list);
     }
+
+
 
     /**
      * Create list for year
      * @param year
      * @return
      */
-    public List<Student> createlistyear(int year)
+    public Students_list createlistyear(int year)
     {
-        birthday_list.clear();
+        List<Student> birthday_list = new ArrayList<Student>();
         for (int i =0; i< lenght_full_list; i++)
         {
             if (full_list.get(i).getBirthday()[2] >= year)
@@ -158,6 +112,6 @@ public class Students_list {
                 birthday_list.add(full_list.get(i));
             }
         }
-        return  birthday_list;
+        return  new Students_list(birthday_list);
     }
 }

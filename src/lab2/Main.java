@@ -9,14 +9,12 @@ public class Main {
         Students_list st_list = input_data();
         printdata(st_list.getFull_list());
 
-        st_list.createlistdepart("ASU");
-        printdata(st_list.getDepartment_list());
+        printdata(st_list.createlistdepart("ASU").getFull_list());
 
-        st_list.createlistgroup("CS-202");
-        printdata(st_list.getGroup_list());
+        printdata(st_list.createlistgroup("CS-202").getFull_list());
 
-        st_list.createlistyear(2003);
-        printdata(st_list.getBirthday_list());
+        printdata(st_list.createlistyear(2003).getFull_list());
+
 
     }
 
